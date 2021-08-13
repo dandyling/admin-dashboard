@@ -34,9 +34,10 @@ const stats: Card[] = [
 export const StatsPanel = () => {
   return (
     <Panel>
-      {stats.map((stat) => {
+      {stats.map((stat, i) => {
         return (
           <Flex
+            key={`${i} - ${stat.name}`}
             flex={1}
             flexDirection="column"
             backgroundColor="gray.100"

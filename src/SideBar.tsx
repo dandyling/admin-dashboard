@@ -70,9 +70,15 @@ export const SideBar = () => {
           flexDirection="column"
           alignItems="flex-start"
         >
-          {sideBarItems.map((item) => {
+          {sideBarItems.map((item, i) => {
             return (
-              <Button size="lg" mb="2" variant="ghost" leftIcon={item.icon}>
+              <Button
+                key={`${i} - ${item.name}`}
+                size="lg"
+                mb="2"
+                variant="ghost"
+                leftIcon={item.icon}
+              >
                 <Flex pl="1" flexDirection="column" alignItems="flex-start">
                   <Text mb="1" fontSize="0.9rem">
                     {item.name}

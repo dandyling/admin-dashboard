@@ -1,6 +1,7 @@
 import {
   Flex,
   Table,
+  TableProps,
   Tbody,
   Td,
   Text,
@@ -94,9 +95,9 @@ const campaignStats: CampaignStat[] = [
   },
 ]
 
-export const CampaignStatistics = () => {
+export const CampaignStatistics = (props: TableProps) => {
   return (
-    <Table variant="simple">
+    <Table variant="simple" {...props}>
       <Thead>
         <Tr>
           <Th>Campaigns</Th>
@@ -108,23 +109,23 @@ export const CampaignStatistics = () => {
         </Tr>
       </Thead>
       <Tbody>
-        {campaignStats.map((campaign) => {
+        {campaignStats.map((campaign, i) => {
           return (
-            <Tr>
+            <Tr key={`${i} - ${campaign.name}`}>
               <Td>
                 <Flex flexDirection="column">
                   <Text fontSize="xl" fontWeight="semibold">
                     {campaign.name}
                   </Text>
                   <Flex fontSize="smaller">
-                    {campaign.actions.map((action, i) => {
+                    {campaign.actions.map((action, j) => {
                       return (
-                        <>
+                        <Flex key={`${j} - ${action.name}`}>
                           <Text color={action.color}>{action.name}</Text>
                           {i < campaign.actions.length - 1 && (
                             <Text mx="1">&#183;</Text>
                           )}
-                        </>
+                        </Flex>
                       )
                     })}
                   </Flex>

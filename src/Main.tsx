@@ -10,7 +10,9 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
+import { ActionsTable } from './ActionsTable'
 import { CampaignStatistics } from './CampaignStatistics'
+import { SalesTable } from './SalesTable'
 import { StatsPanel } from './StatsPanel'
 import { Toolbar } from './Toolbar'
 
@@ -34,7 +36,11 @@ export const Main = () => {
             <Toolbar />
           </Flex>
           <StatsPanel />
-          <CampaignStatistics />
+          <CampaignStatistics my="2" />
+          <Flex my="8">
+            <ActionsTable mr="8" />
+            <SalesTable ml="8" />
+          </Flex>
         </TabPanel>
       </TabPanels>
     </Tabs>
