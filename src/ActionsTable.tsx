@@ -68,7 +68,12 @@ export const ActionsTable = (props: TableProps) => {
   )
 }
 
-const SimpleTable = styled(Table)``
+const SimpleTable = styled(Table)`
+  tr,
+  td {
+    line-height: 1rem;
+  }
+`
 
 const mapActionsToTableRows = (actions: Action[]): TableRow[] => {
   return actions.map((action) => {
