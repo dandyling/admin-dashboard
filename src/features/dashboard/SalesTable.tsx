@@ -1,6 +1,7 @@
-import { Table, TableProps, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { TableProps, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import * as React from 'react'
 import { TableRow } from './ActionsTable'
+import { SimpleTable } from '../../components/SimpleTable'
 
 export interface Sale {
   name: string
@@ -39,7 +40,7 @@ const sales: Sale[] = [
 export const SalesTable = (props: TableProps) => {
   const rows = mapSalesToTableRows(sales)
   return (
-    <Table variant="simple" {...props}>
+    <SimpleTable highlightLastColumn size="sm" variant="simple" {...props}>
       <Thead>
         <Tr>
           <Th>Last Purchased</Th>
@@ -58,7 +59,7 @@ export const SalesTable = (props: TableProps) => {
           )
         })}
       </Tbody>
-    </Table>
+    </SimpleTable>
   )
 }
 

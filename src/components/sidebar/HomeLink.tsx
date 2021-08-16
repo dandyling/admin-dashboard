@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import * as React from 'react'
-import { Logo } from './Logo'
+import { Logo } from '../Logo'
 
 export const HomeLink = () => {
   return (

@@ -1,6 +1,6 @@
-import { Table, TableProps, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
-import styled from '@emotion/styled'
+import { TableProps, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import * as React from 'react'
+import { SimpleTable } from '../../components/SimpleTable'
 
 export interface Action {
   name: string
@@ -29,11 +29,6 @@ const actions: Action[] = [
     value1: 1000,
     value2: 10000,
   },
-  {
-    name: 'Total',
-    value1: 2100,
-    value2: 12210,
-  },
 ]
 
 export interface TableRow {
@@ -43,9 +38,10 @@ export interface TableRow {
 }
 
 export const ActionsTable = (props: TableProps) => {
-  const rows = mapActionsToTableRows(actions)
+  const total = getTotal(actions)
+  const rows = mapActionsToTableRows([...actions, total])
   return (
-    <SimpleTable size="sm" variant="simple" {...props}>
+    <SimpleTable highlightLastRow size="sm" variant="simple" {...props}>
       <Thead>
         <Tr>
           <Th>Type of Action</Th>
@@ -68,12 +64,20 @@ export const ActionsTable = (props: TableProps) => {
   )
 }
 
-const SimpleTable = styled(Table)`
-  tr,
-  td {
-    line-height: 1rem;
-  }
-`
+const getTotal = (actions: Action[]): Action => {
+  return actions.reduce(
+    (total, action) => {
+      total.value1 += action.value1
+      total.value2 += action.value2
+      return total
+    },
+    {
+      name: 'Total',
+      value1: 0,
+      value2: 0,
+    }
+  )
+}
 
 const mapActionsToTableRows = (actions: Action[]): TableRow[] => {
   return actions.map((action) => {

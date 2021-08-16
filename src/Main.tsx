@@ -1,6 +1,4 @@
 import {
-  Flex,
-  Heading,
   Tab,
   TabList,
   TabPanel,
@@ -10,11 +8,7 @@ import {
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import * as React from 'react'
-import { ActionsTable } from './ActionsTable'
-import { CampaignStatistics } from './CampaignStatistics'
-import { SalesTable } from './SalesTable'
-import { StatsPanel } from './StatsPanel'
-import { Toolbar } from './Toolbar'
+import { Dashboard } from './features/dashboard/Dashboard'
 
 export const Main = () => {
   return (
@@ -28,19 +22,8 @@ export const Main = () => {
         <Tab>Inspect</Tab>
       </TabHeaders>
       <TabPanels>
-        <TabPanel flexDirection="column" px="16" py="8">
-          <Flex justifyContent="space-between">
-            <Heading as="h1" fontSize="3xl" fontWeight="semibold">
-              Dashboard
-            </Heading>
-            <Toolbar />
-          </Flex>
-          <StatsPanel />
-          <CampaignStatistics my="2" />
-          <Flex my="8">
-            <ActionsTable mr="8" />
-            <SalesTable ml="8" />
-          </Flex>
+        <TabPanel px="16" py="8">
+          <Dashboard />
         </TabPanel>
       </TabPanels>
     </Tabs>

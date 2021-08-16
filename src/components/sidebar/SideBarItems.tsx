@@ -5,14 +5,15 @@ import {
   FaChartBar,
   FaChartPie,
   FaCheckDouble,
+  FaCog,
+  FaInfoCircle,
   FaPlusCircle,
   FaPrint,
+  FaQuestionCircle,
+  FaUndo,
   FaWrench,
 } from 'react-icons/fa'
-import { BackNavigation } from './BackNavigation'
-import { HomeLink } from './HomeLink'
-
-const SIDEBAR_WIDTH = 300
+import { Footer } from './Footer'
 
 interface SideBarItem {
   name: string
@@ -20,7 +21,7 @@ interface SideBarItem {
   icon: ReactElement
 }
 
-const sideBarItems: SideBarItem[] = [
+export const sideBarItems: SideBarItem[] = [
   {
     name: 'Metrics',
     description: 'Track your apps across devices',
@@ -48,12 +49,39 @@ const sideBarItems: SideBarItem[] = [
   },
 ]
 
-export const SideBar = () => {
+interface SideBarButton {
+  name: string
+  icon: ReactElement
+}
+
+const sideBarButtons: SideBarButton[] = [
+  {
+    name: 'Settings',
+    icon: <FaCog />,
+  },
+  {
+    name: 'Previous Version',
+    icon: <FaUndo />,
+  },
+  {
+    name: "What's new?",
+    icon: <FaInfoCircle />,
+  },
+  {
+    name: 'Customers Support',
+    icon: <FaQuestionCircle />,
+  },
+]
+
+export const SideBarItems = () => {
   return (
-    <Flex flexDirection="column" flexBasis={SIDEBAR_WIDTH}>
-      <HomeLink />
-      <BackNavigation />
-      <Flex flexDirection="column" alignItems="center">
+    <Flex
+      height="100%"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="space-between"
+    >
+      <Flex flexDirection="column">
         <Button
           my="6"
           color="blue.400"
@@ -95,6 +123,31 @@ export const SideBar = () => {
             )
           })}
         </Flex>
+      </Flex>
+      <Flex color="gray.500" flexDirection="column" alignItems="center">
+        <Flex flexDirection="column">
+          {sideBarButtons.map((item, i) => {
+            const lastItem = i < sideBarButtons.length - 1
+            return (
+              <Button
+                key={`${i} - ${item.name}`}
+                variant="ghost"
+                borderColor="gray.100"
+                borderRadius={0}
+                borderBottomWidth={lastItem ? '1px' : '2px'}
+                leftIcon={item.icon}
+                size="md"
+                width="12rem"
+                justifyContent="flex-start"
+              >
+                <Text ml="2" fontSize="sm">
+                  {item.name}
+                </Text>
+              </Button>
+            )
+          })}
+        </Flex>
+        {Footer()}
       </Flex>
     </Flex>
   )

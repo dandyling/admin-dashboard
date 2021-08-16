@@ -112,7 +112,7 @@ export const CampaignStatistics = (props: TableProps) => {
         {campaignStats.map((campaign, i) => {
           return (
             <Tr key={`${i} - ${campaign.name}`}>
-              <Td>
+              <Td py="2">
                 <Flex flexDirection="column">
                   <Text fontSize="xl" fontWeight="semibold">
                     {campaign.name}
@@ -120,9 +120,9 @@ export const CampaignStatistics = (props: TableProps) => {
                   <Flex fontSize="smaller">
                     {campaign.actions.map((action, j) => {
                       return (
-                        <Flex key={`${j} - ${action.name}`}>
+                        <Flex mt="1" key={`${j} - ${action.name}`}>
                           <Text color={action.color}>{action.name}</Text>
-                          {i < campaign.actions.length - 1 && (
+                          {j < campaign.actions.length - 1 && (
                             <Text mx="1">&#183;</Text>
                           )}
                         </Flex>
@@ -131,11 +131,21 @@ export const CampaignStatistics = (props: TableProps) => {
                   </Flex>
                 </Flex>
               </Td>
-              <Td isNumeric>{campaign.efficiency}</Td>
-              <Td isNumeric>{campaign.plays}</Td>
-              <Td isNumeric>{campaign.finished}</Td>
-              <Td isNumeric>{campaign.likes}</Td>
-              <Td isNumeric>{campaign.comments}</Td>
+              <Td fontWeight="700" isNumeric>
+                {campaign.efficiency}
+              </Td>
+              <Td fontWeight="700" isNumeric>
+                {campaign.plays}
+              </Td>
+              <Td fontWeight="700" isNumeric>
+                {campaign.finished}
+              </Td>
+              <Td fontWeight="700" isNumeric>
+                {campaign.likes}
+              </Td>
+              <Td fontWeight="700" isNumeric>
+                {campaign.comments}
+              </Td>
             </Tr>
           )
         })}
